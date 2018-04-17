@@ -1,20 +1,24 @@
 class One {
     constructor(props) {
         this._props = props;
-        this._parentRender = undefined;
+        this._parent = undefined;
         if(props.el) this._el = document.querySelector(props.el);
         Object.keys(this._props.data).map((key) => {
             let value = this._props.data[key];
-            if(value instanceof One) value._parentRender = this.render.bind(this);
+            if(value instanceof One) value._parent = this;
             Object.defineProperty(this, key, {
                 get: () => value,
                 set: (newValue) => {
                     value = newValue;
-                    this._parentRender ? this._parentRender() : this.render();
+                    this._parent ? this._findParent().render() : this.render();
                 }
             });
         });
         if(props.el) this.render();
+    }
+
+    _findParent() {
+        if(this._parent) return this._parent._findParent(); else return this;
     }
 
     render() {

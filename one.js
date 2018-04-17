@@ -16,7 +16,7 @@ class One {
                 });
             });
         }
-        if(props.el) this.render();
+        if(this._el) this.render();
     }
 
     _findParent() {

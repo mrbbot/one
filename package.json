@@ -1,0 +1,11 @@
+{
+  "name": "One",
+  "version": "1.0.0",
+  "description": "A 1KB rendering library",
+  "main": "index.js",
+  "scripts": {
+    "min": "uglifyjs one.js -c -m -o one.min.js"
+  },
+  "author": "MrBBot <me@mrbbot.co.uk>",
+  "license": "MIT"
+}

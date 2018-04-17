@@ -10,7 +10,7 @@ class One {
                 get: () => value,
                 set: (newValue) => {
                     value = newValue;
-                    this._parent ? this._findParent().render() : this.render();
+                    this._findParent().render();
                 }
             });
         });

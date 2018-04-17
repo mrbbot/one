@@ -3,17 +3,19 @@ class One {
         this._props = props;
         this._parent = undefined;
         if(props.el) this._el = document.querySelector(props.el);
-        Object.keys(this._props.data).map((key) => {
-            let value = this._props.data[key];
-            if(value instanceof One) value._parent = this;
-            Object.defineProperty(this, key, {
-                get: () => value,
-                set: (newValue) => {
-                    value = newValue;
-                    this._findParent().render();
-                }
+        if(this._props.data) {
+            Object.keys(this._props.data).map((key) => {
+                let value = this._props.data[key];
+                if (value instanceof One) value._parent = this;
+                Object.defineProperty(this, key, {
+                    get: () => value,
+                    set: (newValue) => {
+                        value = newValue;
+                        this._findParent().render();
+                    }
+                });
             });
-        });
+        }
         if(props.el) this.render();
     }
 

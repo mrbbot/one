@@ -18,11 +18,9 @@ class One {
         }
         if(this._el) this.render();
     }
-
     _findParent() {
-        if(this._parent) return this._parent._findParent(); else return this;
+        return this._parent ? this._parent._findParent() : this;
     }
-
     render() {
         let result = this._props.render ? this._props.render.bind(this).apply(null, arguments) : '';
         if(this._el) this._el.innerHTML = result; else return result;
